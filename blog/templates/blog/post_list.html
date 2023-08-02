@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Fishing Blog</title>
+</head>
+<body>
+<style>
+    a {
+    text-decoration: none;
+    color: black;
+    }
+</style>
+    <div>
+        <p style="font-size: 48px; margin-top: 50px; text-align: center">
+            Fishing Blog
+        </p>
+    </div>
+
+<div
+        style="font-size: 18px; margin-left: 80%; position: absolute; text-align: right">
+    <h2>Категории</h2>
+    {%for i in category %}
+    <br><a href="{% url 'categories' category_pk=i.pk %}">{{i}}</a></br>
+    {% endfor %}
+</div>
+
+    <div style="margin-bottom: 35px; margin-left: 25px">
+        <a style="border: 2px solid; border-radius: 10px; padding: 5px"
+           href="{% url 'post_new' %}">
+            Содать новую публикацию
+        </a>
+    </div>
+    {%for post in items%}
+        <div style="margin: 25px; margin-top:5px; display: inline-block">
+            <div style="border: 2px solid">
+                <div style="font-size: 24px; margin: 10px; display: inline-block; text-align: center">
+                    <a href="{% url 'post_detail' post_pk=post.pk %}">{{post.title}}</a>
+                </div>
+                <div style="font-size: 16px; text-align: center; border-top: 1px solid">{{post.published_date}}</div>
+            </div>
+        </div>
+    {%endfor%}
+<div style="margin-top: 15px; margin-left: 25px">
+    <a style="border: 2px solid; border-radius: 10px; padding: 5px"
+       href="{% url 'post_draft' %}">
+        Черновики
+    </a>
+</div>
+
+<div style="margin-top: 50px; margin-left: 25px">
+    <h3>Количество публикаций:</h3>
+    {{counter}}
+</div>
+
+</body>
+</html>
